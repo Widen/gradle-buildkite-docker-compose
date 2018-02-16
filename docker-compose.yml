@@ -12,13 +12,11 @@ services:
     working_dir: /opt/app
     ports:
       - "8080:8080"
-    networks: gbdc
     volumes:
       - ./:/work
 
   inter:
     image: openjdk:8-jdk
-    networks: gbdc
     volumes:
       - ./:/work
     depends_on:
