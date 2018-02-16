@@ -1,0 +1,3 @@
+rootProject.name = 'gradle-buildkite-docker-compose'
+
+include 'app', 'json'

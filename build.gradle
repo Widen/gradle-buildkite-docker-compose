@@ -1,0 +1,24 @@
+plugins {
+  id 'java'
+  id 'idea'
+  id 'com.adarshr.test-logger' version '1.1.2'
+  id 'nebula.integtest' version '3.4.0'
+  id 'nebula.release' version '6.3.0'
+}
+
+allprojects {
+  repositories {
+      jcenter()
+  }
+}
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'idea'
+  apply plugin: 'com.adarshr.test-logger'
+  apply plugin: 'nebula.integtest'
+}
+
+tasks.idea {
+  dependsOn = [ cleanIdeaModule, ideaModule ]
+}

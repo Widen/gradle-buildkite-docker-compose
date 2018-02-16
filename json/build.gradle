@@ -1,0 +1,19 @@
+plugins {
+  id 'nebula.maven-publish'
+}
+
+publishing {
+  repositories {
+    maven {
+      def repo = project.version.toString().findAll(/dev\.\d+(\.uncommitted)?\+/).isEmpty() ? 'libs-releases-local' : 'libs-snapshots-local'
+      url "https://widen.jfrog.io/widen/${repo}"
+      credentials {
+          username System.env.MAVEN_REPO_USER
+          password System.env.MAVEN_REPO_PASS
+      }
+      authentication {
+          basic(BasicAuthentication)
+      }
+    }
+  }
+}

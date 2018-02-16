@@ -1,0 +1,25 @@
+version: '2.3'
+
+services:
+  java:
+    image: openjdk:8-jdk
+    volumes:
+      - ./:/work
+
+  app:
+    build:
+      context: .
+    working_dir: /opt/app
+    ports:
+      - "8080:8080"
+    networks: gbdc
+    volumes:
+      - ./:/work
+
+  inter:
+    image: openjdk:8-jdk
+    networks: gbdc
+    volumes:
+      - ./:/work
+    depends_on:
+      - app

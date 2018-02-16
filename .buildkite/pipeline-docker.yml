@@ -1,0 +1,52 @@
+steps:
+
+  - name: ":junit: Unit Tests"
+    command: .buildkite/gradle-test.sh
+    artifact_paths: "app/build/reports/tests/**/*"
+    plugins:
+      docker-compose#v1.8.3:
+        image: openjdk:8-jdk
+        run: gradle
+
+  - name: ":docker: Docker Image"
+    plugins:
+      docker-compose#v1.8.3:
+        build:
+          - app
+        image-repository: ${DOCKER_IMAGE_REPO}
+        image-name: ${WIDEN_DOCKER_TAG}
+        environment:
+          - BUILDKITE_BRANCH
+          - BUILDKITE_BUILD_NUMBER
+          - BUILDKITE_COMMIT
+          - BUILDKITE_PIPELINE_DEFAULT_BRANCH
+          - BUILDKITE_PULL_REQUEST
+          - BUILDKITE_TAG
+          - GRADLE_SWITCHES
+
+  - wait:
+
+  - name: ":docker: Run App"
+    agents:
+      name: "${THIS_BK_AGENT}"
+    plugins:
+      docker-compose#v1.8.3:
+        run: inter
+
+  - block: ":rocket: Start Integration Tests"
+
+  - name: ":junit: Integration Tests"
+    agents:
+      name: "${THIS_BK_AGENT}"
+    command: .buildkite/integration-test.sh
+    artifact_paths: "app/build/reports/integrationTest/**/*"
+    plugins:
+      docker-compose#v1.8.3:
+        run: inter
+        environment:
+          - BUILDKITE_BRANCH
+          - BUILDKITE_BUILD_NUMBER
+          - BUILDKITE_COMMIT
+          - BUILDKITE_PIPELINE_DEFAULT_BRANCH
+          - BUILDKITE_PULL_REQUEST
+          - BUILDKITE_TAG
