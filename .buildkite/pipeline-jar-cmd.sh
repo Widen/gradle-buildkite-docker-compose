@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euox pipefail
 
+export GRADLE_OPTS="-Dorg.gradle.daemon=false"
+export TERM="dumb"
+
 if [ "$BUILDKITE_TAG" == "" ]; then
     git checkout $BUILDKITE_BRANCH
     git reset --hard $BUILDKITE_COMMIT
