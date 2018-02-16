@@ -1,3 +1,4 @@
-rootProject.name = 'gradle-buildkite-docker-compose'
+org.gradle.daemon=false
 
+rootProject.name = 'gradle-buildkite-docker-compose'
 include 'app', 'json'
