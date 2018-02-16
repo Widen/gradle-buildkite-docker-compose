@@ -15,7 +15,7 @@ services:
     volumes:
       - ./:/work
 
-  inter:
+  integ:
     image: openjdk:8-jdk
     volumes:
       - ./:/work

@@ -6,7 +6,7 @@ steps:
     plugins:
       docker-compose#v1.8.3:
         image: openjdk:8-jdk
-        run: gradle
+        run: java
 
   - name: ":docker: Docker Image"
     plugins:
@@ -22,7 +22,6 @@ steps:
           - BUILDKITE_PIPELINE_DEFAULT_BRANCH
           - BUILDKITE_PULL_REQUEST
           - BUILDKITE_TAG
-          - GRADLE_SWITCHES
 
   - wait:
 
@@ -31,7 +30,7 @@ steps:
       name: "${THIS_BK_AGENT}"
     plugins:
       docker-compose#v1.8.3:
-        run: inter
+        run: integ
 
   - block: ":rocket: Start Integration Tests"
 
@@ -42,7 +41,7 @@ steps:
     artifact_paths: "app/build/reports/integrationTest/**/*"
     plugins:
       docker-compose#v1.8.3:
-        run: inter
+        run: integ
         environment:
           - BUILDKITE_BRANCH
           - BUILDKITE_BUILD_NUMBER
