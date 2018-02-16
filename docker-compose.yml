@@ -3,6 +3,7 @@ version: '2.3'
 services:
   java:
     image: openjdk:8-jdk
+    working_dir: /work
     volumes:
       - ./:/work
 
@@ -17,6 +18,7 @@ services:
 
   integ:
     image: openjdk:8-jdk
+    working_dir: /work
     volumes:
       - ./:/work
     depends_on:
