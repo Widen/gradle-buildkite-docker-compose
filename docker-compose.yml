@@ -4,10 +4,6 @@ services:
   java:
     image: openjdk:8-jdk
     working_dir: /work
-    environment:
-      - GRADLE_OPTS="-Dorg.gradle.daemon=false"
-      - TERM="dumb"
-
     volumes:
       - ./:/work
 
