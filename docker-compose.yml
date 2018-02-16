@@ -4,6 +4,10 @@ services:
   java:
     image: openjdk:8-jdk
     working_dir: /work
+    environment:
+      - GRADLE_OPTS="-Dorg.gradle.daemon=false"
+      - TERM="dumb"
+
     volumes:
       - ./:/work
 
@@ -11,6 +15,9 @@ services:
     build:
       context: .
     working_dir: /opt/app
+    environment:
+      - GRADLE_OPTS="-Dorg.gradle.daemon=false"
+      - TERM="dumb"
     ports:
       - "8080:8080"
     volumes:
@@ -19,6 +26,9 @@ services:
   integ:
     image: openjdk:8-jdk
     working_dir: /work
+    environment:
+      - GRADLE_OPTS="-Dorg.gradle.daemon=false"
+      - TERM="dumb"
     volumes:
       - ./:/work
     depends_on:

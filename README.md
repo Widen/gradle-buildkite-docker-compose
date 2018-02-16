@@ -11,11 +11,13 @@
 # Buildkite Pipelines
 
 ### Test and Push Container On Each Commit
-  1. Required pipeline envrionment variables:
-     - DOCKER_LOGIN_USER
-     - DOCKER_LOGIN_PASSWORD
-     - DOCKER_LOGIN_SERVER
-     - DOCKER_IMAGE_REPO
+  1. Required pipeline environment variables:
+     - DOCKER_LOGIN_USER=x
+     - DOCKER_LOGIN_PASSWORD=x
+     - DOCKER_LOGIN_SERVER=x
+     - DOCKER_IMAGE_REPO=x
+     - MAVEN_REPO_USER=x
+     - MAVEN_REPO_PASS=x
 
   1. checkout repo
   1. concurrently run two containers:
