@@ -2,7 +2,7 @@ steps:
 
   - name: ":junit: Unit Tests"
     command: .buildkite/test.sh
-    artifact_paths: "app/build/reports/tests/**/*"
+    artifact_paths: "app/build/reports/tests/test/**/*"
     plugins:
       docker-compose#v1.8.3:
         image: openjdk:8-jdk
@@ -13,14 +13,14 @@ steps:
       docker-compose#v1.8.3:
         build:
           - app
-        image-name: ${DOCKER_TAG}
+        # image-name: ${DOCKER_TAG}
         image-repository: ${DOCKER_IMAGE_REPO}
 
   - wait
 
   - name: ":junit: Integration Tests"
     command: .buildkite/test-integration.sh
-    artifact_paths: "app/build/reports/integrationTest/**/*"
+    artifact_paths: "app/build/reports/integTest/**/*"
     plugins:
       docker-compose#v1.8.3:
         run: integ
