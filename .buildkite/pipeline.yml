@@ -14,13 +14,7 @@ steps:
         build:
           - app
         image-name: ${DOCKER_TAG}
-        environment:
-          - BUILDKITE_BRANCH
-          - BUILDKITE_BUILD_NUMBER
-          - BUILDKITE_COMMIT
-          - BUILDKITE_PIPELINE_DEFAULT_BRANCH
-          - BUILDKITE_PULL_REQUEST
-          - BUILDKITE_TAG
+        image-repository: ${DOCKER_IMAGE_REPO}
 
   - wait
 
