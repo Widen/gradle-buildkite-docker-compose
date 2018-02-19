@@ -1,6 +1,6 @@
 ## Trivial Non-Trivial Gradle / Buildkite / Docker Compose experimentation project
 
-### Configuration
+## Layout and Description of Artifacts
 
   - application source is in `app` directory
     - app has unit tests (no external dependencies) and integration tests (requires `app` to be running for HTTP tests)
@@ -8,16 +8,19 @@
   - JAR artifact in `json` directory
     - JAR file uploaded to remote Maven repo
 
-# Buildkite Pipelines
-
-### Test and Push Container On Each Commit
-  1. Required pipeline environment variables:
+## Buildkite Pipeline Config
+  1. Create a new pipline with forked repo
+  1. Enable `Build Tags` option in Github settings of pipeline
+  1. Add pipeline upload step of `.buildkite/pipeline.sh | buildkite-agent pipeline upload`
+  1. Add these pipeline environment variables (values are specific to your site):
      - DOCKER_LOGIN_USER=x
      - DOCKER_LOGIN_PASSWORD=x
      - DOCKER_LOGIN_SERVER=x
      - DOCKER_IMAGE_REPO=x
      - MAVEN_REPO_USER=x
      - MAVEN_REPO_PASS=x
+
+### Approximate tasks executed by pipeline
 
   1. checkout repo
   1. concurrently run two containers:
