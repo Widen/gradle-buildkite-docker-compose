@@ -19,7 +19,7 @@ public class JettyMain {
 
         WebAppContext context = new WebAppContext();
         context.setServer(server);
-        context.setWar("src/main/webapp");
+        context.setWar("webapp");
 
         server.setHandler(context);
 
