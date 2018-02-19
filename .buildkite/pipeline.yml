@@ -7,6 +7,8 @@ steps:
       docker-compose#v1.8.3:
         image: openjdk:8-jdk
         run: java
+        environment:
+          - DOCKER_TAG
 
   - name: ":docker: Docker Image"
     plugins:
