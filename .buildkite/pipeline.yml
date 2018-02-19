@@ -24,13 +24,6 @@ steps:
     plugins:
       docker-compose#v1.8.3:
         run: integ
-        environment:
-          - BUILDKITE_BRANCH
-          - BUILDKITE_BUILD_NUMBER
-          - BUILDKITE_COMMIT
-          - BUILDKITE_PIPELINE_DEFAULT_BRANCH
-          - BUILDKITE_PULL_REQUEST
-          - BUILDKITE_TAG
 
   - wait
 

@@ -11,6 +11,7 @@ if [ "$BUILDKITE_TAG" == "" ]; then
     git reset --hard $BUILDKITE_COMMIT
 fi
 
+GRADLE_SWITCHES=""
 GRADLE_VERSION=$(./gradlew -version | grep Gradle | cut -d ' ' -f 2)
 
 if [ "$BUILDKITE_PULL_REQUEST" != "false" ]; then

@@ -44,3 +44,8 @@
       - Test endpoint: `http://localhost:8080/?name=blah`
 
   - `./gradlew clean integrationTest` -- run integration tests against HTTP server
+
+# Known Issues
+  1. Uploaded test report HTML artifacts (e.g. CSS) do not correctly link without
+     configuration of [`BUILDKITE_ARTIFACT_UPLOAD_DESTINATION`](https://buildkite.com/docs/agent/cli-artifact#using-your-own-private-aws-s3-bucket).
+     One solution is to use our [cloudfront-auth](https://github.com/Widen/cloudfront-auth) project.
