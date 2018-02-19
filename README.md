@@ -36,7 +36,7 @@
   1. run unit tests
   1. push JAR to remote Maven repo
 
-### Tasks
+### Local Tasks
 
   - `./gradlew clean test` -- run unit tests
 
