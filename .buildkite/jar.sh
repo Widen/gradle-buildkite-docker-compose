@@ -4,6 +4,8 @@ set -euo pipefail
 export GRADLE_OPTS="-Dorg.gradle.daemon=false"
 export TERM="dumb"
 
+# nebula-release directly reads GIT configuration;
+# this resets the working directory to the expected branch checkout configuration
 if [ "$BUILDKITE_TAG" == "" ]; then
     git checkout $BUILDKITE_BRANCH
     git reset --hard $BUILDKITE_COMMIT

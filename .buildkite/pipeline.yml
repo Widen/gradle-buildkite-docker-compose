@@ -13,7 +13,6 @@ steps:
       docker-compose#v1.8.3:
         build:
           - app
-        image-repository: ${DOCKER_IMAGE_REPO}
         image-name: ${DOCKER_TAG}
         environment:
           - BUILDKITE_BRANCH
