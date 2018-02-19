@@ -1,7 +1,7 @@
 steps:
 
   - name: ":junit: Unit Tests"
-    command: .buildkite/gradle-test.sh
+    command: .buildkite/test.sh
     artifact_paths: "app/build/reports/tests/**/*"
     plugins:
       docker-compose#v1.8.3:
@@ -14,7 +14,7 @@ steps:
         build:
           - app
         image-repository: ${DOCKER_IMAGE_REPO}
-        image-name: ${WIDEN_DOCKER_TAG}
+        image-name: ${DOCKER_TAG}
         environment:
           - BUILDKITE_BRANCH
           - BUILDKITE_BUILD_NUMBER
@@ -23,21 +23,10 @@ steps:
           - BUILDKITE_PULL_REQUEST
           - BUILDKITE_TAG
 
-  - wait:
-
-  - name: ":docker: Run App"
-    agents:
-      name: "${THIS_BK_AGENT}"
-    plugins:
-      docker-compose#v1.8.3:
-        run: integ
-
-  - block: ":rocket: Start Integration Tests"
+  - wait
 
   - name: ":junit: Integration Tests"
-    agents:
-      name: "${THIS_BK_AGENT}"
-    command: .buildkite/integration-test.sh
+    command: .buildkite/test-integration.sh
     artifact_paths: "app/build/reports/integrationTest/**/*"
     plugins:
       docker-compose#v1.8.3:
@@ -49,3 +38,20 @@ steps:
           - BUILDKITE_PIPELINE_DEFAULT_BRANCH
           - BUILDKITE_PULL_REQUEST
           - BUILDKITE_TAG
+
+  - wait
+
+  - name: ":truck: Publish JAR"
+    command: .buildkite/jar.sh
+    plugins:
+      docker-compose#v1.8.3:
+        run: java
+        environment:
+          - BUILDKITE_BRANCH
+          - BUILDKITE_BUILD_NUMBER
+          - BUILDKITE_COMMIT
+          - BUILDKITE_PIPELINE_DEFAULT_BRANCH
+          - BUILDKITE_PULL_REQUEST
+          - BUILDKITE_TAG
+          - MAVEN_REPO_USER
+          - MAVEN_REPO_PASS

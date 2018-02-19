@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euox pipefail
+set -euo pipefail
 
 export GRADLE_OPTS="-Dorg.gradle.daemon=false"
 export TERM="dumb"
