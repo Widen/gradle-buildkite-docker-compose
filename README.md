@@ -45,6 +45,9 @@
 
   - `./gradlew clean integrationTest` -- run integration tests against HTTP server
 
+  - Publish versioned JAR: for a release candidate use `./gradlew candidate`, for final use `./gradlew final`
+      - Gradle will auto tag the release and push to the repo; buildkite will then run the build and upload the JAR artifacts to the Maven server
+
 # Known Issues
   1. Uploaded test report HTML artifacts (e.g. CSS) do not correctly link without
      configuration of [`BUILDKITE_ARTIFACT_UPLOAD_DESTINATION`](https://buildkite.com/docs/agent/cli-artifact#using-your-own-private-aws-s3-bucket).
