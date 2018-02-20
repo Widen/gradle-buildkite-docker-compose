@@ -6,7 +6,7 @@ export TERM="dumb"
 
 # nebula-release directly reads GIT configuration;
 # reset the working directory to the expected branch checkout configuration
-if [ "$BUILDKITE_TAG" != "" ]; then
+if [ "$BUILDKITE_TAG" == "" ]; then
     git checkout $BUILDKITE_BRANCH
     git reset --hard $BUILDKITE_COMMIT
 fi
