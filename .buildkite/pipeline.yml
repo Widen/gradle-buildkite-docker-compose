@@ -8,14 +8,14 @@ steps:
         image: openjdk:8-jdk
         run: java
         environment:
-          - DOCKER_TAG
+          - DOCKER_TAG2=${DOCKER_TAG?}
 
   - name: ":docker: Docker Image"
     plugins:
       docker-compose#v1.8.3:
         build:
           - app
-        # image-name: ${DOCKER_TAG}
+        image-name: ${DOCKER_TAG}
         image-repository: ${DOCKER_IMAGE_REPO}
 
   - wait
