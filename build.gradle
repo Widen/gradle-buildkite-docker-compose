@@ -4,11 +4,12 @@ plugins {
   id 'nebula.release' version '6.3.0'
 }
 
+group = "widendemo"
+
 allprojects {
   repositories {
       jcenter()
   }
-  group = "widendemo"
 }
 
 subprojects {
