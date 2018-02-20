@@ -6,7 +6,7 @@ applicationName = 'gbdc'
 mainClassName = 'com.widen.hello.JettyMain'
 
 dependencies {
-  compile project(":json")
+  compile project(":gbdc-json")
   compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
   compile group: 'org.eclipse.jetty', name: 'jetty-webapp', version: '9.3.14.v20161028'
 

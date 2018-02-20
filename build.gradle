@@ -1,6 +1,4 @@
 plugins {
-  id 'java'
-  id 'idea'
   id 'com.adarshr.test-logger' version '1.1.2'
   id 'nebula.integtest' version '3.4.0'
   id 'nebula.release' version '6.3.0'
@@ -10,6 +8,7 @@ allprojects {
   repositories {
       jcenter()
   }
+  group = "widendemo"
 }
 
 subprojects {
@@ -17,8 +16,8 @@ subprojects {
   apply plugin: 'idea'
   apply plugin: 'com.adarshr.test-logger'
   apply plugin: 'nebula.integtest'
-}
-
-tasks.idea {
-  dependsOn = [ cleanIdeaModule, ideaModule ]
+  idea.module.name = name.replace("${rootProject.name}-", '')
+  tasks.idea {
+    dependsOn = [ cleanIdeaModule, ideaModule ]
+  }
 }

@@ -1,15 +1,15 @@
 plugins {
   id 'nebula.maven-publish'
+  id 'nebula.source-jar'
 }
 
 publishing {
   repositories {
     maven {
-      def repo = project.version.toString().findAll(/dev\.\d+(\.uncommitted)?\+/).isEmpty() ? 'libs-releases-local' : 'libs-snapshots-local'
-      url "https://widen.jfrog.io/widen/${repo}"
+      url System.env.MAVEN_REPO_URL ?: MAVEN_REPO_URL
       credentials {
-          username System.env.MAVEN_REPO_USER
-          password System.env.MAVEN_REPO_PASS
+          username System.env.MAVEN_REPO_USER ?: MAVEN_REPO_USER
+          password System.env.MAVEN_REPO_PASS ?: MAVEN_REPO_PASS
       }
       authentication {
           basic(BasicAuthentication)
@@ -17,3 +17,6 @@ publishing {
     }
   }
 }
+
+rootProject.tasks.devSnapshot.finalizedBy tasks.publish
+rootProject.tasks.snapshot.finalizedBy tasks.publish
