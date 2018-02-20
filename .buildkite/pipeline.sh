@@ -47,4 +47,5 @@ steps:
           - BUILDKITE_TAG
           - MAVEN_REPO_USER
           - MAVEN_REPO_PASS
+          - MAVEN_REPO_URL
 YAML

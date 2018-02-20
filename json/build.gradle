@@ -6,10 +6,10 @@ plugins {
 publishing {
   repositories {
     maven {
-      url System.env.MAVEN_REPO_URL ?: MAVEN_REPO_URL
+      url System.env.MAVEN_REPO_URL ?: ''
       credentials {
-          username System.env.MAVEN_REPO_USER ?: MAVEN_REPO_USER
-          password System.env.MAVEN_REPO_PASS ?: MAVEN_REPO_PASS
+          username System.env.MAVEN_REPO_USER ?: ''
+          password System.env.MAVEN_REPO_PASS ?: ''
       }
       authentication {
           basic(BasicAuthentication)
